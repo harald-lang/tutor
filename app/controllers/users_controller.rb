@@ -112,7 +112,15 @@ class UsersController < ApplicationController
     
     
     def user_params    #temporary change for to_datetime error of pass resetting
-
+      
+     
+if params.has_key?(:reset_password_sent_at,:remember_created_at, :current_sign_in_at, :last_sign_in_at) 
+  date = DateTime.parse(params[:reset_password_sent_at], params[:remember_created_at], params[:current_sign_in_at], params[:last_sign_in_at])
+else 
+  date = DateTime.now
+end
+      
+      
       if params.has_key?(:created_at,:updated_at) 
   date = DateTime.parse(params[:created_at], params[:updated_at])
 else 
