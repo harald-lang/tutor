@@ -11,6 +11,9 @@
     = @course.name
   .form-group.form-inline
     = f.label :start
-    = f.date_select :start, {}, { :class => "form-control" }
+     = f.date_field :start, as: :date, value: f.object.try(:strftime,"%Y-%m-%d"), class: 'form-control'
+    //= f.date_select :start, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }}  
+    //= date_select :start, { :class => "form-control" }
+    //= f.date_select :start, {}, { :class => "form-control" }
   .actions
     = f.submit 'Save', :class => "btn btn-primary"
