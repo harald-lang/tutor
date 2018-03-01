@@ -109,25 +109,19 @@ class UsersController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    def user_params
+ 
+      params.require(:user).permit(:email,:firstname,:lastname,:magictoken,:password,:password_confirmation,:role)
+   
     
-    
-    def user_params    #temporary change for to_datetime error of pass resetting
-      
-     
-if params.has_key?(:reset_password_sent_at,:remember_created_at, :current_sign_in_at, :last_sign_in_at) 
-  date = DateTime.parse(params[:reset_password_sent_at], params[:remember_created_at], params[:current_sign_in_at], params[:last_sign_in_at])
-else 
-  date = DateTime.now
-end
-      
-      
-      if params.has_key?(:created_at,:updated_at) 
+    #for datetime error test this condition
+         
+if params.has_key?(:created_at,:updated_at) 
   date = DateTime.parse(params[:created_at], params[:updated_at])
 else 
   date = DateTime.now
 end
-      params.require(:user).permit(:email,:firstname,:lastname,:magictoken,:password,:password_confirmation,:role)
-   end
+    
 end
 
    
