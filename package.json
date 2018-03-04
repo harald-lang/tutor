@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "@bower_components/bootstrap": "twbs/bootstrap#~3.0.0",
+    "@bower_components/bootstrap-switch": "nostalgiaz/bootstrap-switch#~2.0.1",
+    "@bower_components/codemirror": "components/codemirror#~3.19.0",
+    "@bower_components/fullcalendar": "fullcalendar/fullcalendar#~1.6.4",
+    "@bower_components/handlebars": "components/handlebars.js#~2.0.0-alpha.1",
+    "@bower_components/jquery": "jquery/jquery-dist#~1.10.2",
+    "@bower_components/moment": "moment/moment#~2.5.1",
+    "@bower_components/mustache": "janl/mustache.js#~0.8.1",
+    "@bower_components/select2": "ivaynberg/select2#~3.4.3"
+  },
+  "engines": {
+    "yarn": ">= 1.0.0"
+  },
+  "scripts": {
+    "postinstall": "node -e \"try { require('fs').symlinkSync(require('path').resolve('node_modules/@bower_components'), 'vendor/assets/components', 'junction') } catch (e) { }\""
+  }
+}

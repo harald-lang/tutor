@@ -24,3 +24,4 @@
 /public/assets/
 /persistency/*.sqlite*
 /vendor
+/node_modules
