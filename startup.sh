@@ -14,7 +14,7 @@ echo 	"cd /src ; \
 		RAILS_ENV=production bundle exec rake assets:precompile ; \
 		rake rails:update:bin ; \
 		sqlite3 db/production.sqlite3 < fakedata.sql ; \
-		rails server mongrel -p 8080 -e production; sleep 5" > /src/sudoscript
+		bin/rails server -p 8080 -e production; sleep 5" > /src/sudoscript
 rm -rf /src/tmp/
 mkdir /src/tmp
 chown -R user: /src

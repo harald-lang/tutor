@@ -71,7 +71,6 @@ gem "switch_user"
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 gem 'awesome_print'
 gem 'chronic'
-gem 'thin', '~> 1.7.2', '>= 1.7.2'
 gem "exception_notification", :git => "git://github.com/rails/exception_notification", :require => 'exception_notifier'
 gem 'prawn'
 gem 'bootstrap-datepicker-rails'

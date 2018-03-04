@@ -8,7 +8,7 @@ Tutor Tool
 3. run `bundle install --path vendor/bundle` to install any backend dependencies
 4. run `bower install` for frontend deps - (You'll need nodejs+bower for this)
 5. create your db: `rake db:migrate RAILS_ENV=development`
-6. run the bundled *thin* webserver: `bundle exec thin start`
+6. run the bundled webserver: `bin/rails server`
 
 # Screenshots
 ![Analysis view](https://raw.github.com/henrik-muehe/tutor/master/screenshots/analysis.png)
