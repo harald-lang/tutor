@@ -63,13 +63,13 @@
 					= form_for :tutorial, :url => "/tutorial", :method => "get" do |f|
 						.form-group
 							%label Course
-							= f.collection_select :course_id, Course.all(:order => "created_at DESC" ), :id, :name, { selected: @group ? @group.course.id : 0 }, { :class => "form-control" }
+							= f.collection_select :course_id, Course.all().order("created_at DESC"), :id, :name, { selected: @group ? @group.course.id : 0 }, { :class => "form-control" }
 						.form-group
 							%label Group
-							= f.collection_select :group_id, @group.course.groups(:order => :name ), :id, :select_name, { selected: @group ? @group.id : 0 }, { :class => "form-control" }
+							= f.collection_select :group_id, @group.course.groups.order("name"), :id, :select_name, { selected: @group ? @group.id : 0 }, { :class => "form-control" }
 						.form-group
 							%label Week
-							= f.collection_select :week_id, @group.course.weeks(:order => :start), :id, :select_name, { selected: @week ? @week.id : 0 }, { :class => "form-control" }
+							= f.collection_select :week_id, @group.course.weeks.order("start"), :id, :select_name, { selected: @week ? @week.id : 0 }, { :class => "form-control" }
 				.modal-footer
 					%button.btn.btn-default(data-dismiss="modal") Close
 
