@@ -9,7 +9,7 @@ class Student < ActiveRecord::Base
 
 	def total_proper(course, limit=Time.now)
 		max = -100
-		Student.find(:all, :conditions => ['matrnr = ? OR (firstname = ? AND lastname = ?)', matrnr, firstname, lastname]).each do |s|
+		Student.all.where('matrnr = ? OR (firstname = ? AND lastname = ?)', matrnr, firstname, lastname).each do |s|
 			value = s.total(course, limit)
 			if value > max
 				max = value
@@ -20,10 +20,11 @@ class Student < ActiveRecord::Base
 	end
 
 	def total(course, limit=Time.now)
-		groups = course.groups
-		weeks = course.weeks.where("start <= Datetime(?)", limit)
+		groups = course.groups.pluck(:id)
+		weeks = course.weeks.where("start <= Datetime(?)", limit).pluck(:id)
 		weekAssessments = assessments.where("group_id in (?) and week_id in (?)", groups, weeks)
-		value = -(weeks.length - weekAssessments.length); weekAssessments.each { |a| value += a.value }
+		value = -(weeks.length - weekAssessments.length);
+		weekAssessments.each { |a| value += a.value }
 		value
 	end
 end
