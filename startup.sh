@@ -1,31 +1,17 @@
 #!/bin/bash
 
+# remove any temporary files
 rm -rf /src/tmp/
 mkdir /src/tmp
-#chown -R user: /src
-#chown -R user: /usr/local/rvm/
-#chmod 755 /src/sudoscript
 
-# start postfix
-rm -rf /var/spool/postfix/private/
-rm -rf /var/spool/postfix/public/
-/etc/init.d/postfix restart
-
-#/usr/sbin/sshd &
-#/usr/sbin/cron
-
+# move to our install location inside the image
 cd /src
 
-#gem install bundler
-#gem install rake
-#gem install rails
-
-#bundle install
-#bower install --allow-root
-
+# precompile assets for production use
 RAILS_ENV=production bundle exec rake assets:precompile
 
+# migrate to our newest db version
 rake db:migrate RAILS_ENV=production
-sqlite3 db/production.sqlite3 < setup.sql
 
+# start the server
 bin/rails server -p 8080 -e production
