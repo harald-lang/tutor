@@ -2,7 +2,11 @@ Tutor Tool
 ==========
 
 
-# Setup
+# Run with docker
+1. `docker build -t tutor .`
+2. `docker run -v /opt/tutor:/src/persistency -p 8080:8080 -d --name tutor tutor`
+
+# Developer Setup
 1. `git clone` this repo
 2. install ruby tools: `gem install rdoc && gem install bundler && gem install rake`
 3. run `bundle install --path vendor/bundle` to install any backend dependencies
