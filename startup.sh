@@ -12,7 +12,6 @@ echo 	"cd /src ; \
 		bower install --allow-root; \
 		rake db:migrate RAILS_ENV=production;  \
 		RAILS_ENV=production bundle exec rake assets:precompile ; \
-		rake rails:update:bin ; \
 		sqlite3 db/production.sqlite3 < fakedata.sql ; \
 		bin/rails server -p 8080 -e production; sleep 5" > /src/sudoscript
 rm -rf /src/tmp/

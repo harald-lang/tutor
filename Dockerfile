@@ -31,6 +31,8 @@ RUN apt-get -y install nodejs nodejs-legacy npm
 RUN npm install -g bower
 RUN apt-get -q -y install busybox-syslogd tmux
 
+RUN mkdir /var/run/sshd
+RUN chmod 0755 /var/run/sshd
 RUN apt-get -y install postfix openssh-server sudo ruby-dev libsqlite3-dev
 
 # Install user

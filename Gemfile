@@ -75,3 +75,4 @@ gem "exception_notification", :git => "git://github.com/rails/exception_notifica
 gem 'prawn'
 gem 'bootstrap-datepicker-rails'
 gem "cocoon"
+gem 'tzinfo-data'
