@@ -8,7 +8,7 @@ Tutor Tool
 
 # Developer Setup
 1. `git clone` this repo
-2. install ruby tools: `gem install rdoc && gem install bundler && gem install rake`
+2. install ruby tools: `gem install rdoc && gem install bundler && gem install rake && gem install rails`
 3. run `bundle install --path vendor/bundle` to install any backend dependencies
 4. run `bower install` for frontend deps - (You'll need nodejs+bower for this)
 5. create your db: `rake db:migrate RAILS_ENV=development`

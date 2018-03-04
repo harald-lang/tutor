@@ -1,45 +1,28 @@
-FROM ubuntu:16.04
+FROM ruby:2.5
 MAINTAINER Harald Lang <harald.lang@in.tum.de>
-ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get -q -y update
-RUN apt-get -q -y upgrade
-RUN apt-get -q -y install curl gnupg2
+# NodeJS is broken in Debian Stretch Repos, just use the offical mirrors for now
+RUN curl -sL https://deb.nodesource.com/setup_9.x | bash -
 
-RUN gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+# Install apt based dependencies required to run Rails as well as RubyGems. As the Ruby image itself is based on a
+# Debian image, we use apt-get to install those.
+RUN apt-get update && apt-get install -y build-essential nodejs
 
-#RUN curl -L https://get.rvm.io | bash -s stable --ruby
-#because of rvm issue 4068 on github
-RUN curl -L https://get.rvm.io | grep -v __rvm_print_headline | bash -s stable --ruby
+# Configure the main working directory. This is the base directory used in any further RUN, COPY, and ENTRYPOINT commands.
+RUN mkdir -p /src
+WORKDIR /src
 
-#RUN mkdir /var/run/sshd
-#RUN echo 'root:password' > /root/passwdfile
-#RUN cat /root/passwdfile | chpasswd
+# Copy the Gemfile as well as the Gemfile.lock and install the RubyGems. This is a separate step so the dependencies
+# will be cached unless changes to one of those two files are made.
+COPY Gemfile Gemfile.lock ./
+RUN gem install bundler && bundle install --jobs 20 --retry 5
 
-RUN apt-get -q -y install build-essential
-RUN apt-get -q -y install git-core
+# Copy the main application.
+COPY . ./
 
-# Install node
-#RUN echo "deb http://archive.ubuntu.com/ubuntu trusty main restricted universe multiverse" >> /etc/apt/sources.list
-RUN apt-get update
-RUN apt-get -y install software-properties-common python-software-properties python g++ make vim
-#RUN add-apt-repository -y ppa:chris-lea/node.js
-#not available for 16.04, install normal nodejs instead
-RUN apt-get update
-RUN apt-get -y install nodejs nodejs-legacy npm
-#added
-RUN npm install -g bower
-RUN apt-get -q -y install busybox-syslogd tmux
-
-RUN mkdir /var/run/sshd
-RUN chmod 0755 /var/run/sshd
-RUN apt-get -y install postfix openssh-server sudo ruby-dev libsqlite3-dev
-
-# Install user
-RUN useradd -m user
-
-## Install source
-ADD . /src
+# Install bower deps
+RUN npm -g install bower
+RUN bower install --allow-root
 
 #EXPOSE 22 8080
 EXPOSE 8080

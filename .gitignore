@@ -22,5 +22,5 @@
 /.idea
 /tutor
 /public/assets/
-/persistency/*.sqlite
+/persistency/*.sqlite*
 /vendor
