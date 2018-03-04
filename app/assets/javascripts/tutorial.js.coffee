@@ -125,7 +125,7 @@ window.tutorial = (group_id) =>
 
 	$("#search").select2
 		placeholder: "Search for a student"
-		minimumInputLength: 3
+		minimumInputLength: 2
 		ajax:
 			url: "/tutorial/search"
 			dataType: 'json'
