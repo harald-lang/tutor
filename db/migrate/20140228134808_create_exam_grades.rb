@@ -1,4 +1,4 @@
-class CreateExamGrades < ActiveRecord::Migration
+class CreateExamGrades < ActiveRecord::Migration[5.0]
   def change
     create_table :exam_grades do |t|
       t.decimal :grade, :precision => 2, :scale => 1

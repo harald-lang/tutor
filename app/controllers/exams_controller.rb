@@ -5,9 +5,9 @@ require 'digest/sha1'
 
 class ExamsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:grade_save]
-  before_filter :authenticate_user!, except: [:grade, :grade_save]
-  before_filter :admincheck, except: [:grade, :grade_save]
-  before_filter :magiccheck, only: [:grade, :grade_save]
+  before_action :authenticate_user!, except: [:grade, :grade_save]
+  before_action :admincheck, except: [:grade, :grade_save]
+  before_action :magiccheck, only: [:grade, :grade_save]
   before_action :set_exam, only: [:show, :edit, :update, :destroy, :assign_seats, :reset_seats, :print_roomdoor, :print_signatures, :export_seats, :export_grades, :grade, :grade_save, :apply_score, :score]
 
   def magiccheck

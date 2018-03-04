@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :admincheck
+  before_action :authenticate_user!
+  before_action :admincheck
   before_action :set_student, only: [:show, :edit, :update, :destroy]
 
   # GET /students

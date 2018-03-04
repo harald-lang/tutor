@@ -1,4 +1,4 @@
-class CreateExamTaskAssessments < ActiveRecord::Migration
+class CreateExamTaskAssessments < ActiveRecord::Migration[5.0]
 	def change
 		create_table :exam_task_assessments do |t|
 			t.integer :student_id

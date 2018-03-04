@@ -1,8 +1,8 @@
 # Lazy week initialization
 
 class AssessmentsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :admincheck
+  before_action :authenticate_user!
+  before_action :admincheck
   before_action :set_assessment, only: [:show, :edit, :update, :destroy]
 
   # GET /assessments

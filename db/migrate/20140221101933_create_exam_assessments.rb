@@ -1,4 +1,4 @@
-class CreateExamAssessments < ActiveRecord::Migration
+class CreateExamAssessments < ActiveRecord::Migration[5.0]
   def change
     create_table :exam_assessments do |t|
       t.integer :exam_id

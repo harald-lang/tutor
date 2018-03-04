@@ -1,6 +1,6 @@
 class AnalysesController < ApplicationController
-	before_filter :authenticate_user!
-	before_filter :admincheck, except: [:show, :index]
+	before_action :authenticate_user!
+	before_action :admincheck, except: [:show, :index]
 	before_action :set_analysis, only: [:show, :edit, :update, :destroy]
 
 	# GET /analyses

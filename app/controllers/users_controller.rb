@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, except: [:magiclogin]
-  before_filter :admincheck, except: [:magiclogin]
+  before_action :authenticate_user!, except: [:magiclogin]
+  before_action :admincheck, except: [:magiclogin]
   before_action :set_user, only: [:show, :edit, :update, :destroy, :reset, :associate]
 
   def reset
@@ -110,18 +110,15 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
- 
       params.require(:user).permit(:email,:firstname,:lastname,:magictoken,:password,:password_confirmation,:role)
-   
-    
-    #for datetime error test this condition
-         
-if params.has_key?(:created_at,:updated_at) 
-  date = DateTime.parse(params[:created_at], params[:updated_at])
-else 
-  date = DateTime.now
-end
-    
+
+      #for datetime error test this condition
+      if params.has_key?(:created_at,:updated_at)
+        date = DateTime.parse(params[:created_at], params[:updated_at])
+      else
+        date = DateTime.now
+      end
+    end
 end
 
    

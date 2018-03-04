@@ -1,4 +1,4 @@
-class AddGroupsStudents < ActiveRecord::Migration
+class AddGroupsStudents < ActiveRecord::Migration[5.0]
   def change
   	create_table :groups_students do |t|
   		t.belongs_to :group

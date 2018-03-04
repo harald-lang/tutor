@@ -1,8 +1,8 @@
 require 'awesome_print'
 
 class TutorialController < ApplicationController
-	before_filter :authenticate_user!
-	before_filter :redirector
+	before_action :authenticate_user!
+	before_action :redirector
 
 	def redirector
 		return redirect_to "/analyses" if current_user.role == "analyst"

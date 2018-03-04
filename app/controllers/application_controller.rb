@@ -8,11 +8,14 @@ class ApplicationController < ActionController::Base
 
 	def coursecheck
 		session[:course_id] = params[:course_id] if params.has_key? :course_id
-		session[:course_id] ||= Course.order("created_at DESC").first.id
-		@course = Course.find(session[:course_id])
+		course = Course.order("created_at DESC")
+		if course.exists? then
+			session[:course_id] ||= course.first.id
+			@course = Course.find(session[:course_id])
+		end
 	end
 
-	before_filter :coursecheck
+	before_action :coursecheck
 
 
   # Prevent CSRF attacks by raising an exception.
