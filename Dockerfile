@@ -21,8 +21,9 @@ RUN gem install bundler && bundle install --jobs 20 --retry 5
 COPY . ./
 
 # Install bower deps
-RUN npm -g install yarn
+RUN npm -g install yarn bower
 RUN cd ./
+RUN echo '{ "allow_root": true }' > /root/.bowerrc
 RUN yarn
 
 #EXPOSE 22 8080
