@@ -5,6 +5,7 @@ Tutor Tool
 # Run with docker
 1. `docker build -t tutor .`
 2. `docker run -v /opt/tutor:/src/persistency -p 8080:8080 -d --name tutor tutor`
+3. Login using admin@db.in.tum.de / admin123
 
 # Developer Setup
 1. `git clone` this repo

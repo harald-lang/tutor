@@ -1,3 +1,4 @@
+sudo: required
 language: ruby
 
 services:
@@ -32,10 +33,14 @@ before_script:
   - bundle exec rake db:migrate RAILS_ENV=production
   - bundle exec rake db:migrate RAILS_ENV=test
 
+script:
+  - bundle exec rake
+  - docker build -t tutor .
+
 before_deploy: docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
 
 deploy:
   provider: script
-  script: ./.travis/dockerhub
+  script: ./Dockerhub
   on:
     branch: master

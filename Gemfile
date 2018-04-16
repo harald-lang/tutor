@@ -14,6 +14,8 @@ gem 'activejob', '~> 5.1', '>= 5.1.4'
 gem 'activemodel', '~> 5.1', '>= 5.1.4'
 gem 'activerecord', '~> 5.1', '>= 5.1.4'
 gem 'activesupport', '~> 5.1', '>= 5.1.4'
+gem 'migration_data'
+
 gem 'bundler', '~> 1.15', '>= 1.15.4'
 
 gem 'railties', '~> 5.1', '>= 5.1.4'
