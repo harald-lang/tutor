@@ -13,5 +13,8 @@ RAILS_ENV=production bundle exec rake assets:precompile
 # migrate to our newest db version
 rake db:migrate RAILS_ENV=production
 
+#Make sure our binaries are here
+rake rails:update:bin
+
 # start the server
-ruby bin/rails server -p 8080 -e production
+bin/rails server -p 8080 -e production
