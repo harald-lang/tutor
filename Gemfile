@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 #kimia: I changed the version of rails if it wouldnt help, I will rechange it to the first
 
 gem 'rails', '~> 5.1', '>= 5.1.4'
+gem 'rails-controller-testing'
 gem 'actioncable', '~> 5.1', '>= 5.1.4'
 gem 'actionmailer', '~> 5.1', '>= 5.1.4'
 gem 'actionpack', '~> 5.1', '>= 5.1.4'
@@ -54,7 +55,7 @@ group :doc do
 end
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.1', '>= 3.1.5'
+gem 'bcrypt', '~> 3.1', '>= 3.1.5'
 
 # Use unicorn as the app server
 # gem 'unicorn'
