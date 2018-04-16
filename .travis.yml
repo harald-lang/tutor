@@ -10,7 +10,10 @@ env:
 rvm:
   - 2.5
 
-before_install: gem install bundler
+before_install:
+  - gem update --system
+  - gem --version
+  - gem install bundler
 
 before_deploy: docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
 
