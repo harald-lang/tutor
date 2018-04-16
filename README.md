@@ -3,9 +3,29 @@ Tutor Tool
 
 
 # Run with docker
-1. `docker build -t tutor .`
-2. `docker run -v /opt/tutor:/src/persistency -p 8080:8080 -d --name tutor tutor`
-3. Login using admin@db.in.tum.de / admin123
+1. Start the container, then login using admin@db.in.tum.de / admin123
+```
+docker run  -v /opt/tutor:/src/persistency \
+            -p 8080:8080 \
+            -d \
+            --name tutor \
+            -e GMAIL_USERNAME='username@gmail.com' \
+            -e GMAIL_PASSWORD='XXX' \
+            -e ADMIN_EMAIL='admin@example.com' \
+            -e SERVER_NAME='tutor.example.com' \
+            kordianbruck/tutor
+```
+
+Environment Variables:
+```
+SECRET_KEY_BASE - (optional) will be generated on container start. at least 30 characters and all random,
+EMAIL_SENDER - (optional) Default: no-reply@in.tum.de
+EMAIL_SENDER_FULL - (optional) Default: Tutor Tool <no-reply@in.tum.de>
+GMAIL_USERNAME - Username for email sending via SMTP
+GMAIL_PASSWORD - Password for email sending via SMTP
+ADMIN_EMAIL - Admin email to receive errors
+SERVER_NAME - server name for the email links to be generated
+```
 
 # Developer Setup
 1. `git clone` this repo
