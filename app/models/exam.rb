@@ -72,6 +72,10 @@ class Exam < ActiveRecord::Base
 	end
 
 	def original_import=(v)
+		unless v.respond_to?(:path)
+			return;
+		end
+
 		write_attribute(:original_import, File.read(v.path, :encoding => 'iso-8859-15'))
 
 		self.start=nil

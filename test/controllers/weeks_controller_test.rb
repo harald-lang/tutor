@@ -19,25 +19,25 @@ class WeeksControllerTest < ActionController::TestCase
 
   test "should create week" do
     assert_difference('Week.count') do
-      post :create, week: { start: @week.start }
+      post :create, params: {week: { start: @week.start }}
     end
 
     assert_redirected_to weeks_path
   end
 
   test "should get edit" do
-    get :edit, id: @week
+    get :edit, params: {id: @week}
     assert_response :success
   end
 
   test "should update week" do
-    patch :update, id: @week, week: { start: @week.start }
+    patch :update, params: {id: @week, week: { start: @week.start }}
     assert_redirected_to weeks_path
   end
 
   test "should destroy week" do
     assert_difference('Week.count', -1) do
-      delete :destroy, id: @week
+      delete :destroy, params: {id: @week}
     end
 
     assert_redirected_to weeks_path
