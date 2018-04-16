@@ -19,30 +19,30 @@ class AnalysesControllerTest < ActionController::TestCase
 
   test "should create analysis" do
     assert_difference('Analysis.count') do
-      post :create, analysis: { admin: @analysis.admin, name: @analysis.name, query: @analysis.query }
+      post :create, params: {analysis: { admin: @analysis.admin, name: @analysis.name, query: @analysis.query }}
     end
 
     assert_redirected_to analysis_path(assigns(:analysis))
   end
 
   test "should show analysis" do
-    get :show, id: @analysis
+    get :show, params: {id: @analysis}
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @analysis
+    get :edit, params: {id: @analysis}
     assert_response :success
   end
 
   test "should update analysis" do
-    patch :update, id: @analysis, analysis: { admin: @analysis.admin, name: @analysis.name, query: @analysis.query }
+    patch :update, params: {id: @analysis, analysis: { admin: @analysis.admin, name: @analysis.name, query: @analysis.query }}
     assert_redirected_to analysis_path(assigns(:analysis))
   end
 
   test "should destroy analysis" do
     assert_difference('Analysis.count', -1) do
-      delete :destroy, id: @analysis
+      delete :destroy, params: {id: @analysis}
     end
 
     assert_redirected_to analyses_path
