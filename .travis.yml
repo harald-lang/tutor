@@ -15,7 +15,7 @@ before_install:
   - gem --version
   - gem install bundler
 
-after_install:
+before_script:
   - bundle exec rake db:migrate RAILS_ENV=production
 
 before_deploy: docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
