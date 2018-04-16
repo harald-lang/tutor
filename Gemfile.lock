@@ -119,6 +119,7 @@ GEM
     marcel (0.3.2)
       mimemagic (~> 0.3.2)
     method_source (0.9.0)
+    migration_data (0.3.0)
     mimemagic (0.3.2)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
@@ -242,6 +243,7 @@ DEPENDENCIES
   haml-rails
   jbuilder (~> 2.7)
   jquery-rails
+  migration_data
   newrelic_rpm
   prawn
   rails (~> 5.1, >= 5.1.4)
