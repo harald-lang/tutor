@@ -19,30 +19,30 @@ class CoursesControllerTest < ActionController::TestCase
 
   test "should create course" do
     assert_difference('Course.count') do
-      post :create, course: { name: @course.name, user_id: @course.user_id }
+      post :create, params: {course: { name: @course.name, user_id: @course.user_id }}
     end
 
     assert_redirected_to course_path(assigns(:course))
   end
 
   test "should show course" do
-    get :show, id: @course
+    get :show, params: {id: @course}
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @course
+    get :edit, params: {id: @course}
     assert_response :success
   end
 
   test "should update course" do
-    patch :update, id: @course, course: { name: @course.name, user_id: @course.user_id }
+    patch :update, params: {id: @course, course: { name: @course.name, user_id: @course.user_id }}
     assert_redirected_to course_path(assigns(:course))
   end
 
   test "should destroy course" do
     assert_difference('Course.count', -1) do
-      delete :destroy, id: @course
+      delete :destroy, params: {id: @course}
     end
 
     assert_redirected_to courses_path

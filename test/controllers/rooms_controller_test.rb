@@ -19,30 +19,30 @@ class RoomsControllerTest < ActionController::TestCase
 
   test "should create room" do
     assert_difference('Room.count') do
-      post :create, room: { name: @room.name, seats: @room.seats }
+      post :create, params: {room: { name: @room.name, seats: @room.seats }}
     end
 
     assert_redirected_to room_path(assigns(:room))
   end
 
   test "should show room" do
-    get :show, id: @room
+    get :show, params: {id: @room}
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @room
+    get :edit, params: {id: @room}
     assert_response :success
   end
 
   test "should update room" do
-    patch :update, id: @room, room: { name: @room.name, seats: @room.seats }
+    patch :update, params: {id: @room, room: { name: @room.name, seats: @room.seats }}
     assert_redirected_to room_path(assigns(:room))
   end
 
   test "should destroy room" do
     assert_difference('Room.count', -1) do
-      delete :destroy, id: @room
+      delete :destroy, params: {id: @room}
     end
 
     assert_redirected_to rooms_path
