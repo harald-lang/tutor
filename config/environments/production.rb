@@ -72,8 +72,16 @@ Tutor::Application.configure do
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
 
-  config.action_mailer.default_url_options = { :host => 'deskkemper08.informatik.tu-muenchen.de:8080' }
-  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { :host => ENV['SERVER_NAME'] }
+  config.action_mailer.smtp_settings = {
+      :address              => "smtp.gmail.com",
+      :port                 => 587,
+      :user_name            => ENV['GMAIL_USERNAME'],
+      :password             => ENV['GMAIL_PASSWORD'],
+      :authentication       => "plain",
+      :enable_starttls_auto => true
+  }
 
 #    :enable_starttls_auto => true  }
 
@@ -85,6 +93,6 @@ Tutor::Application.configure do
 
   config.middleware.use ExceptionNotifier,
     :email_prefix => "[Exception] ",
-    :sender_address => %{"Exception Notifier" <kemperwebtools@gmail.com>},
-    :exception_recipients => %w{harald.lang@example.com}
+    :sender_address => Rails.application.secrets.email_sender_full,
+    :exception_recipients => ENV['ADMIN_EMAIL']
 end
