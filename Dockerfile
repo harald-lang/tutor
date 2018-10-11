@@ -30,7 +30,7 @@ RUN yarn
 COPY . ./
 
 # There is a symlink that breaks ruby, so delete it before we compile assets
-#RUN rm /src/vendor/assets/components
+RUN rm /src/vendor/assets/components
 RUN mkdir /src/vendor/assets/components
 RUN cp -a /src/node_modules/@bower_components/* /src/vendor/assets/components
 
