@@ -25,6 +25,7 @@ window.tutorial = (group_id) =>
 			# Push to server
 			req = $.post "/tutorial/assess", $(form).serialize(), ((data) => ), 'json'
 			req.success (e) =>
+        sort()
 				$("#alert").hide()
 			req.fail (e) =>
 				input.val(oldValue)
@@ -34,7 +35,7 @@ window.tutorial = (group_id) =>
 		# Tooltips
 		$(".enable-tooltip").tooltip
 			placement: "bottom"
-			container: "body" 
+			container: "body"
 
 	sort = =>
 		#$(".enable-tooltip").tooltip('destroy')
