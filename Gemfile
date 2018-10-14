@@ -72,10 +72,12 @@ gem 'haml-rails'
 gem 'devise'
 gem "switch_user"
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
-gem 'awesome_print'
 gem 'chronic'
 gem "exception_notification", :git => "git://github.com/rails/exception_notification", :require => 'exception_notifier'
 gem 'prawn'
 gem 'bootstrap-datepicker-rails'
 gem "cocoon"
 gem 'tzinfo-data'
+
+# Currently bundled version of csv in ruby 2.5.X is broken with utf8/bom
+gem 'csv', '~> 3.0.0'

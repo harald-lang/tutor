@@ -1,4 +1,4 @@
-FROM ruby:2.5
+FROM ruby:2.5.1
 MAINTAINER Harald Lang <harald.lang@in.tum.de>
 
 # NodeJS is broken in Debian Stretch Repos, just use the offical mirrors for now
@@ -30,7 +30,7 @@ RUN yarn
 COPY . ./
 
 # There is a symlink that breaks ruby, so delete it before we compile assets
-#RUN rm /src/vendor/assets/components
+RUN rm /src/vendor/assets/components
 RUN mkdir /src/vendor/assets/components
 RUN cp -a /src/node_modules/@bower_components/* /src/vendor/assets/components
 

@@ -12,7 +12,11 @@ class Group < ActiveRecord::Base
 	MINUTES = (0..11).map { |i| ["%02d" % (i*5),i*5] }
 
 	def select_name
-		"#{name} (#{start.strftime("%a %H:%M")})"
+		if start
+			"#{name} (#{start.strftime("%a %H:%M")})"
+		else
+			"#{name} <No start time set>"
+		end
 	end
 
 	def day

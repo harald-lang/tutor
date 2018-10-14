@@ -1,4 +1,3 @@
-require 'awesome_print'
 
 class TutorialController < ApplicationController
 	before_action :authenticate_user!
@@ -74,7 +73,7 @@ class TutorialController < ApplicationController
 		@group = Group.find(params["group_id"])
 		@student = Student.find(params["student_id"])
 		@week = Week.find(params["week_id"])
-		ap params
+
 		if params["mode"] == "temp"
 			a = Assessment.where(:student => @student, :week => @week).first
 			a = Assessment.new(:student => @student, :week => @week, :user => current_user, :value => 0, :group => @group) if a.nil?
