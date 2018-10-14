@@ -79,3 +79,6 @@ gem 'prawn'
 gem 'bootstrap-datepicker-rails'
 gem "cocoon"
 gem 'tzinfo-data'
+
+# Currently bundled version of csv in ruby 2.5.X is broken with utf8/bom
+gem 'csv', '~> 3.0.0'

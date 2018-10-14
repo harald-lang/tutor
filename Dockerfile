@@ -1,4 +1,4 @@
-FROM ruby:2.5
+FROM ruby:2.5.1
 MAINTAINER Harald Lang <harald.lang@in.tum.de>
 
 # NodeJS is broken in Debian Stretch Repos, just use the offical mirrors for now
