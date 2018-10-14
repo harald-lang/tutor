@@ -41,6 +41,7 @@ window.tutorial = (group_id) =>
 		#$(".enable-tooltip").tooltip('destroy')
 		rows = $.makeArray($("tbody tr").remove())
 		$(rows).removeClass('warning')
+		$(rows).removeClass('success')
 		$(rows).removeClass('danger')
 		rows.sort (a,b) =>
 			an = $(a).find("td.lastname").text()
@@ -51,7 +52,7 @@ window.tutorial = (group_id) =>
 			$(r).attr("title",$(r).attr("data-original-title"))
 			points = parseInt($(r).find("input[type=text]").val())
 			if points < 0 || $(r).attr("data-othergroup") == "1" then b.push(r) else a.push(r)
-		$(a).addClass('warning')
+		$(a).addClass('success')
 		$(b).addClass('danger')
 		rows = a.concat(b)
 		$(r).find("td.count").text(parseInt(index)+1) for index,r of rows
