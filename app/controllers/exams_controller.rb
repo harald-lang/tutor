@@ -1,4 +1,3 @@
-require 'awesome_print'
 require 'prawn'
 require 'tempfile'
 require 'digest/sha1'
