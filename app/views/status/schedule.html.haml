@@ -36,18 +36,15 @@
 								%a(href="mailto:#{g.user.email}")= g.user.name
 
 :coffeescript
-	groups = #{Group.find(:all, :joins => :course, :conditions => ["courses.id = ?", params[:course_id]]).to_json(:only => [:name,:start,:room,:updated_at], :include => { :user => { :only => [ :firstname, :lastname, :email ]} })};
-	utilization = #{ActiveRecord::Base.connection.execute("select group_name,room,CAST( (100.0/num_seats)*(avg(num_attendees)) as integer) as 'util' from free_seats where course_id=5 group by course_id, course_name, group_name, room, num_seats, num_enrolled").to_json};
+	groups = #{Group.includes(:user).where(course_id: params[:course_id]).to_json(only: [:name, :start, :room, :updated_at], include: {user: {only: [:firstname, :lastname, :email]}}).html_safe};
 	$(document).ready =>
 		events=[]
 		for group in groups
-			util = utilization.filter (x) -> x.group_name == group.name
-			util = util["0"].util
 			events.push
 				title: "\#{group.name.replace(/Gruppe /,'')}, \#{group.room}\n\#{group.user.firstname.substr(0,1)}. \#{group.user.lastname}"
 				group: group
-				start: new Date(new Date(group.start).getTime() + new Date().getTimezoneOffset() * 60000 - 60*60000)
-				end: new Date(new Date(group.start).getTime() + new Date().getTimezoneOffset() * 60000 + 90 * 60000 -60*60000)
+				start: group.start
+				end: moment(group.start).add(90, 'minutes').format()
 				allDay: false
-				color: if (util >= 95) then '#F5A9A9' else (if (util >= 90) then '#F7BE81' else '#D8F6CE')
+				color: '#4daf4a'
 		window.buildCalendar("cal", events, (=>))
