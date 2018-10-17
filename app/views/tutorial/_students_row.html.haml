@@ -1,6 +1,6 @@
 - a = Assessment.where(:student => s, :week => @week).first || Assessment.new(:value => -1, :user=>current_user, :student => s, :week => @week, :group => @group)
 - begin
-	%tr{ "data-id" => s.id, "data-othergroup" => (a.value >= 0) ? "1" : "0" }
+	%tr{ "data-id" => s.id, "data-othergroup" => (a.value >= 0 && a.group != @group) ? "1" : "0" }
 		%td.count
 		%td
 			= form_for a, :method=>:post,:html => { :class => "form-inline", :onsubmit => "return false;" } do |f|
