@@ -19,7 +19,7 @@ window.tutorial = (group_id) =>
 			# Change visible points
 			oldValue = input.val()
 			newValue = parseInt(input.val()) + parseInt(el.attr("data-value"))
-			newValue = if newValue < -1 then -1 else newValue
+			newValue = if newValue < 0 then 0 else newValue
 			input.val(newValue)
 
 			# Push to server
@@ -51,7 +51,7 @@ window.tutorial = (group_id) =>
 		for r in rows
 			$(r).attr("title",$(r).attr("data-original-title"))
 			points = parseInt($(r).find("input[type=text]").val())
-			if points < 0 || $(r).attr("data-othergroup") == "1" then b.push(r) else a.push(r)
+			if points < 1 || $(r).attr("data-othergroup") == "1" then b.push(r) else a.push(r)
 		$(a).addClass('success')
 		$(b).addClass('danger')
 		rows = a.concat(b)
@@ -68,7 +68,7 @@ window.tutorial = (group_id) =>
 			points=$(r).find("input[type=text]").val()
 			lastname=$(r).find("td.lastname").text()
 			firstname=$(r).find("td.firstname").text()
-			if points >= 0 && $(r).attr("data-othergroup") != "1"
+			if points >= 1 && $(r).attr("data-othergroup") != "1"
 				wheel.segments.push "#{firstname} #{lastname}"
 		if wheel.segments.length > 0
 			$("#wheel").modal('show')

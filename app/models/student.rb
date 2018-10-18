@@ -23,7 +23,7 @@ class Student < ActiveRecord::Base
 		groups = course.groups.pluck(:id)
 		weeks = course.weeks.where("start <= Datetime(?)", limit).pluck(:id)
 		weekAssessments = assessments.where("group_id in (?) and week_id in (?)", groups, weeks)
-		value = -(weeks.length - weekAssessments.length);
+		value = 0
 		weekAssessments.each { |a| value += a.value }
 		value
 	end
