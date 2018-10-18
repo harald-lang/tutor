@@ -25,7 +25,7 @@ window.tutorial = (group_id) =>
 			# Push to server
 			req = $.post "/tutorial/assess", $(form).serialize(), ((data) => ), 'json'
 			req.success (e) =>
-        sort()
+				sort()
 				$("#alert").hide()
 			req.fail (e) =>
 				input.val(oldValue)
