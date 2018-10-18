@@ -42,13 +42,12 @@ class LoadController < ApplicationController
         next if row["name"].nil?
 
         lastname,firstname = row["name"].split(", ")
-        password = rand(36**8).to_s(36)
+	password = Devise.friendly_token.first(8)
         u = User.create_with({
           :firstname => firstname,
           :lastname => lastname,
-          :password => password,
-          :password_confirmation => password
-        }).find_or_create_by({:email => row["email"]})
+          :password => password
+	}).find_or_create_by!({:email => row["email"].downcase})
 
         g = c.groups.where(:name => row["group"])
         if g.length == 0 then
@@ -60,7 +59,7 @@ class LoadController < ApplicationController
         g.start = row["when"]
         g.room = row["room"]
         g.user = u
-        g.save
+        g.save!
       end
     end
   end
